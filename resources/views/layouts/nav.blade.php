@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+            {{-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="{{ url('/admin') }}">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Dashboard</span>
@@ -93,7 +93,7 @@
                 <a class="nav-link" href="#">
                     <i class="fa fa-fw fa-link"></i>
                     <span class="nav-link-text">Link</span>
-                </a>
+                </a> --}}
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prensa">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePrensa" data-parent="#exampleAccordion">

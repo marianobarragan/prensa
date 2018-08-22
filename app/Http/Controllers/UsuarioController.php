@@ -17,7 +17,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        return view('carga');
+        return view('usuarios.carga');
     }
 
  
@@ -129,7 +129,7 @@ class UsuarioController extends Controller
      
         $usuarios = Usuario::oldest(Usuario::CREATED_AT)->get();
 
-        return view('list', compact('usuarios'));
+        return view('usuarios.list', compact('usuarios'));
     
     }
 
@@ -164,6 +164,42 @@ class UsuarioController extends Controller
 
         return back()->with('success', 'Datos ingresados correctamente.');
     
-    }    
+    }
+
+    public function edit(Usuario $usuario){
+        
+        return view('usuarios.modificar',compact(['usuario']));
+
+    }
+    
+    public function update(Usuario $usuario){
+    
+        $u = request()->validate([
+			'nombre' => 'required',
+			'apellido' => 'required',
+			'genero' => 'required',
+			'fecha_nacimiento' => 'required',
+			'dni' => 'required',
+			'localidad' => 'required',
+			'barrio' => 'required',
+			'calle' => 'required',
+			'numero' => 'required',
+			'mail' => 'required',
+			'telefono' => 'required',
+			'celular' => 'required',
+			'origen' => 'required',
+			'observaciones' => 'nullable'
+        ]);
+             
+        $usuario->update($u);
+        return redirect('/usuarios/listado')->with('message', 'Registro de usuario modificado correctamente!');
+    }
+
+    public function delete(Usuario $usuario){
+        
+        $usuario->delete();
+        return redirect('/usuarios/listado')->with('message', 'Registro de usuario eliminado correctamente!');
+
+    }
 
 }

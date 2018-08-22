@@ -28,7 +28,7 @@ class CreatePressUsersTable extends Migration
             $table->string('telefono');
             $table->string('celular');
             $table->string('origen');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->timestamp('creado', 0)->nullable();
             $table->timestamp('ultima_modificacion', 0)->nullable();  
         });

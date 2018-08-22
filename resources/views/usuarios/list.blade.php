@@ -20,7 +20,39 @@
           <a href="{{ url('downloadExcel/xls') }}"><button class="btn btn-success">Exportar Excel xls (2003)</button></a>
           <a href="{{ url('downloadExcel/xlsx') }}"><button class="btn btn-success">Exportar Excel xlsx (2007)</button></a>
 					-->
-            
+          @if ($errors->any())
+
+          <div class="alert alert-danger">
+
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+
+              <ul>
+
+                  @foreach ($errors->all() as $error)
+
+                      <li>{{ $error }}</li>
+
+                  @endforeach
+
+              </ul>
+
+          </div>
+
+      @endif
+
+
+
+      @if (Session::has('success'))
+
+          <div class="alert alert-success">
+
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+
+              <p>{{ Session::get('success') }}</p>
+
+          </div>
+
+      @endif
             
             
             <table class ="table table-bordered" id= "tabla_usuarios">
@@ -56,12 +88,12 @@
                     {{$u->dni}}
                   </td>
                   <td>
-                    {{$u->updated_at}}
+                    {{$u->ultima_modificacion}}
                   </td>                  
                   <td>
 										<div style="width:90px;">
 											<div style="float: left; width: 45px">
-												<form method="GET" action="/horarios/{{$u->id}}/editar">
+												<form method="GET" action="/usuarios/{{$u->id}}/editar">
 							        				
 							        				{{ csrf_field() }}
 													<!-- <input type="submit" value="Editar" class="btn btn-primary">-->
@@ -71,7 +103,7 @@
 												</form>
 											</div>
 											<div style="float: right; width: 45px">
-												<form method="POST" action="/horarios/{{$u->id}}">
+												<form method="POST" action="/usuarios/{{$u->id}}">
 													
 													{{ method_field('DELETE')}}
 							        				{{ csrf_field() }}
@@ -94,13 +126,9 @@
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © Your Website 2018</small>
-        </div>
-      </div>
-    </footer>
+    @component('footer')
+          
+    @endcomponent
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>

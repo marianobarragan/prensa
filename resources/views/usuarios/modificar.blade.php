@@ -9,23 +9,16 @@
         <li class="breadcrumb-item">
           <a href="">Prensa</a>
         </li>
-        <li class="breadcrumb-item active">Crear usuario</li>
+        <li class="breadcrumb-item active">Modificar usuario</li>
       </ol>
       <div class="row">
         <div class="col-12">
           <h1>Prensa</h1>
-          
-          
-          <!--
-          <a href="{{ url('downloadExcel/xls') }}"><button class="btn btn-success">Exportar Excel xls (2003)</button></a>
-          <a href="{{ url('downloadExcel/xlsx') }}"><button class="btn btn-success">Exportar Excel xlsx (2007)</button></a>
-					-->
-            
-						<p>Ingrese los datos de un nuevo usuario:</p>
-                        <form role="form" action={{ action('UsuarioController@store')}} method="post" style="width: 600px; margin: auto;">
+
+						<p>Ingrese los datos a modificar del usuario:</p>
+                        <form role="form" action='/usuarios/{{$usuario->id}}' method="post" style="width: 600px; margin: auto;">
                         	            @csrf
-
-
+                                      {{ method_field('PUT')}}
 
 							            @if ($errors->any())
 
@@ -63,16 +56,16 @@
                             <fieldset>
                                 <div class="form-group">
                                 	Apellido
-                                    <input class="form-control" placeholder="Apellido" name="apellido" type="text" autofocus required>
+                                <input class="form-control" placeholder="Apellido" name="apellido" type="text" value="{{$usuario->apellido}}" autofocus required>
                                 </div>
                                 <div class="form-group">
                                 	Nombre
-                                    <input class="form-control" placeholder="Nombre" name="nombre" type="text" value="" required>
+                                    <input class="form-control" placeholder="Nombre" name="nombre" type="text" value="{{$usuario->nombre}}" required>
                                 </div>
                                 <div class="form-group">
                                 	Género
-                                  <select class="form-control" name="genero" required>
-                                      <option selected="selected" value="">Seleccione un género </option>
+                                  <select class="form-control" name="genero" value="{{$usuario->genero}}" required>
+                                      <option selected="selected" >Seleccione un género </option>
                                       <option value="M">M </option>
                                       <option value="F">F </option>
                                       <option value="NC">NC </option>
@@ -80,47 +73,47 @@
                                 </div>
                                 <div class="form-group">
                                     Fecha nacimiento
-																		<input class="form-control" placeholder="Fecha nacimiento" name="fecha_nacimiento" type="date" value="" required>
+																		<input class="form-control" placeholder="Fecha nacimiento" name="fecha_nacimiento" type="date" value="{{$usuario->fecha_nacimiento}}" required>
                                 </div>
                                 <div class="form-group">
                                     DNI
-																		<input class="form-control" placeholder="DNI" name="dni" type="number" min="1" value="" required>
+																		<input class="form-control" placeholder="DNI" name="dni" type="number" min="1" value="{{$usuario->dni}}" required>
                                 </div>
                                 <div class="form-group">
                                     Localidad
-																		<input class="form-control" placeholder="Localidad" name="localidad" type="text" value="" required>
+																		<input class="form-control" placeholder="Localidad" name="localidad" type="text" value="{{$usuario->localidad}}" required>
                                 </div>
                                 <div class="form-group">
                                     Barrio
-																		<input class="form-control" placeholder="Barrio" name="barrio" type="text" value="" required>
+																		<input class="form-control" placeholder="Barrio" name="barrio" type="text" value="{{$usuario->barrio}}" required>
                                 </div>
                                 <div class="form-group">
                                     Calle
-																		<input class="form-control" placeholder="Calle" name="calle" type="text" value="" required>
+																		<input class="form-control" placeholder="Calle" name="calle" type="text" value="{{$usuario->calle}}" required>
                                 </div>
                                 <div class="form-group">
                                     Número
-																		<input class="form-control" placeholder="Número" name="numero" type="number" min="1" value="" required>
+																		<input class="form-control" placeholder="Número" name="numero" type="number" min="1" value="{{$usuario->numero}}" required>
                                 </div>
                                 <div class="form-group">
                                     Mail
-																		<input class="form-control" placeholder="Mail" name="mail" type="email" value="" required>
+																		<input class="form-control" placeholder="Mail" name="mail" type="email" value="{{$usuario->mail}}" required>
                                 </div>
                                 <div class="form-group">
                                     Teléfono Fijo
-																		<input class="form-control" placeholder="Teléfono Fijo" name="telefono" type="number" min="1" value="" required>
+																		<input class="form-control" placeholder="Teléfono Fijo" name="telefono" type="number" min="1" value="{{$usuario->telefono}}" required>
                                 </div>
                                 <div class="form-group">
                                     Teléfono Celular
-																		<input class="form-control" placeholder="Teléfono Celular" name="celular" type="number" min="1" value="" required>
+																		<input class="form-control" placeholder="Teléfono Celular" name="celular" type="number" min="1" value="{{$usuario->celular}}" required>
                                 </div>
                                 <div class="form-group">
                                     Origen
-																		<input class="form-control" placeholder="Origen" name="origen" type="text" value="" required>
+																		<input class="form-control" placeholder="Origen" name="origen" type="text" value="{{$usuario->origen}}" required>
                                 </div>
                                 <div class="form-group">
                                     Observaciones
-																		<input class="form-control" placeholder="Observaciones" name="observaciones" type="text" value="">
+																		<input class="form-control" placeholder="Observaciones" name="observaciones" type="text" value="{{$usuario->obervaciones}}">
                                 </div>
                                 <!--
                                 <div class="checkbox">
@@ -129,7 +122,7 @@
                                     </label>
                                 </div>
                               -->
-                                <input type="submit" value="Registrar">
+                                <input type="submit" value="Actualizar">
                                 <!-- Change this to a button or input when using this as a form 
                                 <a href="{{ url ('') }}" class="btn btn-lg btn-success btn-block">Login</a> -->
                             </fieldset>
